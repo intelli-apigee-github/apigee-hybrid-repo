@@ -2,7 +2,7 @@ import sys
 import os
 import re
 import pyutil
-import filereplace
+#import filereplace
 import upload_n_deploy as ud
 import zip_n_unzip as zu
 
@@ -65,10 +65,10 @@ class Edit_spike_arrest:
 					if (value_of_effective_count == "true") & (ref_var == ""):
 						changed_spike_rate=no_of_mp*int(only_digit)
 						print(changed_spike_rate)
-						filereplace(path+"\\"+filename+"\\apiproxy\\policies\\"+file_to_delete,"<UseEffectiveCount>true</UseEffectiveCount>","")
-						filereplace(path+"\\"+filename+"\\apiproxy\\policies\\"+file_to_delete,"<Rate>"+original_spike_rate+"</Rate>","<Rate>"+str(changed_spike_rate)+"p"+unit_spike+"</Rate>")
+						pyutil.files.filereplace(path+"\\"+filename+"\\apiproxy\\policies\\"+file_to_delete,"<UseEffectiveCount>true</UseEffectiveCount>","")
+						pyutil.files.filereplace(path+"\\"+filename+"\\apiproxy\\policies\\"+file_to_delete,"<Rate>"+original_spike_rate+"</Rate>","<Rate>"+str(changed_spike_rate)+"p"+unit_spike+"</Rate>")
 					else:
-						filereplace(path+"\\"+filename+"\\apiproxy\\policies\\"+file_to_delete,"<UseEffectiveCount>false</UseEffectiveCount>","")
+						pyutil.files.filereplace(path+"\\"+filename+"\\apiproxy\\policies\\"+file_to_delete,"<UseEffectiveCount>false</UseEffectiveCount>","")
 			file2.close()
 
 class Main_spike_arrest:
