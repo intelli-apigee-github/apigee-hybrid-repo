@@ -1,7 +1,8 @@
 import sys
 import os
 import re
-from pyutil import filereplace
+import pyutil
+import filereplace
 import upload_n_deploy as ud
 import zip_n_unzip as zu
 
