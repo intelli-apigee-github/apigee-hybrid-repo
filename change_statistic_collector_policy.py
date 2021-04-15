@@ -3,7 +3,8 @@ import os
 import shutil
 import zipfile as zp
 import re
-from pyutil import filereplace
+import pyutil
+import filereplace
 import json
 import requests
 import upload_n_deploy  as ud
