@@ -4,7 +4,8 @@ import shutil
 import zipfile as zp
 import re
 import pyutil
-import filereplace
+#import 
+
 import json
 import requests
 import upload_n_deploy  as ud
@@ -93,12 +94,12 @@ class Edit_static_collector:
 
 			file3.close()
 		print("Changing values inside the DataCapture policy to match with the Statistic Collector Policy")
-		filereplace(path+"\\"+filename+"\\apiproxy\\policies\\"+m_dc_file_name+'.xml','<DataCapture name="DataCapture"','<DataCapture name="'+policy_name+'"')
-		filereplace(path+"\\"+filename+"\\apiproxy\\policies\\"+m_dc_file_name+'.xml',' <DisplayName>DataCapturepolicy</DisplayName>',' <DisplayName>'+policy_display_name+'</DisplayName>')
+		pyutil.files.filereplace(path+"\\"+filename+"\\apiproxy\\policies\\"+m_dc_file_name+'.xml','<DataCapture name="DataCapture"','<DataCapture name="'+policy_name+'"')
+		pyutil.files.filereplace(path+"\\"+filename+"\\apiproxy\\policies\\"+m_dc_file_name+'.xml',' <DisplayName>DataCapturepolicy</DisplayName>',' <DisplayName>'+policy_display_name+'</DisplayName>')
 		if default_value_stats == 0:
-			filereplace(path+"\\"+filename+"\\apiproxy\\policies\\"+m_dc_file_name+'.xml','<Collect ref="existing-variable" default="0"/>','<Collect ref="'+referenced_var+'" default="0"/>')
+			pyutil.files.filereplace(path+"\\"+filename+"\\apiproxy\\policies\\"+m_dc_file_name+'.xml','<Collect ref="existing-variable" default="0"/>','<Collect ref="'+referenced_var+'" default="0"/>')
 		else:
-			filereplace(path+"\\"+filename+"\\apiproxy\\policies\\"+m_dc_file_name+'.xml','<Collect ref="existing-variable" default="0"/>','<Collect ref="'+referenced_var+'" default="'+default_value_stats+'"/>')
+			pyutil.files.filereplace(path+"\\"+filename+"\\apiproxy\\policies\\"+m_dc_file_name+'.xml','<Collect ref="existing-variable" default="0"/>','<Collect ref="'+referenced_var+'" default="'+default_value_stats+'"/>')
 			print("Changes Applied")
 		print("Renaming the DataCapture Policy to match with Statistic Collector policy")
 		os.rename(path+"\\"+filename+"\\apiproxy\\policies\\"+m_dc_file_name+'.xml', path+"\\"+filename+"\\apiproxy\\policies\\"+file_to_delete)
