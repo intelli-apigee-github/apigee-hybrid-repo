@@ -9,11 +9,16 @@ class Unzip:
 	def __init__(self):
 		super(Unzip, self).__init__()
 
-	def unzip_file(filename):
+	def unzip_file(filename,path):
 		from zipfile import ZipFile
-		ZipFile(filename+".zip").extractall(filename)	
+		try:
+			ZipFile(filename+".zip").extractall(path)
+			print(filename)
+			print(path)
+		except IOError:
+			print('Specified Zip File not found ')	
 
-class Zip(object):
+class Zip:
 	"""docstring for Zip's the edited file"""
 	def __init__(self):
 		super(Zip, self).__init__()
