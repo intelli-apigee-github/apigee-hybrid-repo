@@ -1,8 +1,8 @@
 import sys
 import os
 import re
+# pyutil import filereplace
 import pyutil
-#import filereplace
 import upload_n_deploy as ud
 import zip_n_unzip as zu
 
@@ -65,10 +65,10 @@ class Edit_spike_arrest:
 					if (value_of_effective_count == "true") & (ref_var == ""):
 						changed_spike_rate=no_of_mp*int(only_digit)
 						print(changed_spike_rate)
-						pyutil.files.filereplace(path+"\\"+filename+"\\apiproxy\\policies\\"+file_to_delete,"<UseEffectiveCount>true</UseEffectiveCount>","")
-						pyutil.files.filereplace(path+"\\"+filename+"\\apiproxy\\policies\\"+file_to_delete,"<Rate>"+original_spike_rate+"</Rate>","<Rate>"+str(changed_spike_rate)+"p"+unit_spike+"</Rate>")
+						pyutil.filereplace(path+"\\"+filename+"\\apiproxy\\policies\\"+file_to_delete,"<UseEffectiveCount>true</UseEffectiveCount>","")
+						pyutil.filereplace(path+"\\"+filename+"\\apiproxy\\policies\\"+file_to_delete,"<Rate>"+original_spike_rate+"</Rate>","<Rate>"+str(changed_spike_rate)+"p"+unit_spike+"</Rate>")
 					else:
-						pyutil.files.filereplace(path+"\\"+filename+"\\apiproxy\\policies\\"+file_to_delete,"<UseEffectiveCount>false</UseEffectiveCount>","")
+						pyutil.filereplace(path+"\\"+filename+"\\apiproxy\\policies\\"+file_to_delete,"<UseEffectiveCount>false</UseEffectiveCount>","")
 			file2.close()
 
 class Main_spike_arrest:
@@ -84,10 +84,4 @@ class Main_spike_arrest:
 		upload_zip=ud
 		upload_zip.Upload.upload_to_hybrid(path,filename,token,resource_type,resource_id)
 		upload_zip.Deploy.deploy_to_hybrid("test",filename,token,resource_type)
-
-
-
-
-
-		
 
