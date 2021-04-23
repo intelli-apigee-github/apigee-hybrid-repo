@@ -65,7 +65,7 @@ class Edit_Statistic_Collector:
 		file_data_capture.close()	
 
 
-		pyutil.filereplace(current_path+"\\proxies"+"\\"+proxy_name_include_sc+"\\apiproxy\\policies\\"+m_dc_file_name+'.xml','<DataCapture name="DataCapture"','<DataCapture name="'+name_sc+'"')
+		pyutil.files.filereplace(current_path+"\\proxies"+"\\"+proxy_name_include_sc+"\\apiproxy\\policies\\"+m_dc_file_name+'.xml','<DataCapture name="DataCapture"','<DataCapture name="'+name_sc+'"')
 		pyutil.files.filereplace(current_path+"\\proxies"+"\\"+proxy_name_include_sc+"\\apiproxy\\policies\\"+m_dc_file_name+'.xml',' <DisplayName>DataCapturepolicy</DisplayName>',' <DisplayName>'+policy_display_name+'</DisplayName>')
 		if default_value_stats == 0:
 			pyutil.files.filereplace(current_path+"\\proxies"+"\\"+proxy_name_include_sc+"\\apiproxy\\policies\\"+m_dc_file_name+'.xml','<Collect ref="existing-variable" default="0"/>','<Collect ref="'+referenced_var+'" default="0"/>')
