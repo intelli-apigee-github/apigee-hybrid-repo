@@ -13,10 +13,10 @@ class Unzip:
 		from zipfile import ZipFile
 		try:
 			ZipFile(filename+".zip").extractall(path)
-			print(filename)
-			print(path)
+			#print("<=========================== PROXY PATH =======================================>"+path)
 		except IOError:
-			print('Specified Zip File not found ')	
+			pass
+			#print('Specified Zip File not found ')	
 
 class Zip:
 	"""docstring for Zip's the edited file"""
@@ -24,10 +24,12 @@ class Zip:
 		super(Zip, self).__init__()
 
 	def create_newzip_after_changes(filename,path):
-		print(os.getcwd())
+		#print(os.getcwd())
 		os.chdir(path+"\\"+filename)
-		print(os.getcwd())
-		print("Creating a zip bundle ")
+		#print("<============================== CURRENT DIRECTORY ==================================>"+os.getcwd())
+		print("--------------------------------------------------------------------------------------------")
+		print("|                             Creating a zip bundle                                        |")
+		print("--------------------------------------------------------------------------------------------")
 		shutil.make_archive(filename, 'zip', path+"\\"+filename)
 		zin = zp.ZipFile (filename+'.zip', 'r')
 		zout = zp.ZipFile (filename+'_new.zip', 'w')
@@ -37,6 +39,8 @@ class Zip:
 				zout.writestr(item, buffer)
 		zout.close()
 		zin.close()
-		print("Zip Bundle Created")
+		print("--------------------------------------------------------------------------------------------")
+		print("|                               Zip Bundle Created                                         |")
+		print("--------------------------------------------------------------------------------------------")
 		os.chdir(path)
 		
