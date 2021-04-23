@@ -10,7 +10,10 @@ class Upload:
 		
 	
 	def upload_to_hybrid(path,filename,token,org,resource_type,resourceId):
-		print("Starting to upload proxy in hybrid")
+		print("--------------------------------------------------------------------------------------------")
+		print("|                     Starting to upload proxy on hybrid                                   |")
+		print("--------------------------------------------------------------------------------------------")
+
 		#resourceId="apiProxyId"
 		url = "https://apigee.googleapis.com/v1/organizations/"+org+"/"+resource_type+"?action=import&name="+filename+"&"+resourceId+" ="+filename
 		payload={}
@@ -21,14 +24,23 @@ class Upload:
 		successful_upload = []
 		if status_code ==200:
 			successful_upload.append(filename)
+			print("--------------------------------------------------------------------------------------------")
+			print("|                      PROXY WAS UPLOADED SUCCESSFULLY                                     |")
+			print("--------------------------------------------------------------------------------------------")
 			print(successful_upload)
 			#print(response.text)
 		if status_code == 401:
-			print("ERROR : ------Please Check the Access Token ,you are Unauthorized -------")
+			print("--------------------------------------------------------------------------------------------")
+			print("|                       !!! ERROR UNAUTHORIZED !!!                                         |")
+			print("--------------------------------------------------------------------------------------------")
+
 			print(response.text)
 			#exit()
 		if status_code == 400:
-			print("ERROR : ------The Zip Bundle Contains Error-------")
+			print("--------------------------------------------------------------------------------------------")
+			print("   					  !!! ERROR The Zip Bundle Contains Error !!!                         |")
+			print("--------------------------------------------------------------------------------------------")
+
 			print(response.text)
 			#exit()
 
@@ -39,7 +51,11 @@ class Deploy:
 		super(Deploy, self).__init__()
 
 	def deploy_to_hybrid(evn,filename,token,org,resource_type):
-		print("Starting to Deploy proxies on hybrid ")
+		#resource_counter=resource_counter+1
+		#print("<===================== Total Deployed Counter ==========================>" +str(resource_counter))
+		print("--------------------------------------------------------------------------------------------")
+		print("|                     Starting to Deploy proxy on hybrid                                   |")
+		print("--------------------------------------------------------------------------------------------")
 		url = "https://apigee.googleapis.com/v1/organizations/"+org+"/environments/"+evn+"/"+resource_type+"/"+filename+"/revisions/1/deployments"
 		payload={}
 		headers = {'Content-Type': 'application/json','Authorization': 'Bearer '+token}
@@ -48,14 +64,25 @@ class Deploy:
 		successful_deploy = []
 		if status_code ==200:
 			successful_deploy.append(filename)
+			print("--------------------------------------------------------------------------------------------")
+			print("|                      PROXY WAS DEPLOYED SUCCESSFULLY                                     |")
+			print("--------------------------------------------------------------------------------------------")
 			print(successful_deploy)
 			#print(response.text)
 		if status_code == 401:
-			print("ERROR : ------Please Check the Access Token ,you are Unauthorized -------")
+			print("--------------------------------------------------------------------------------------------")
+			print("|                       !!! ERROR UNAUTHORIZED !!!                                         |")
+			print("--------------------------------------------------------------------------------------------")
+
 			print(response.text)
 			#exit()
 		if status_code == 400:
-			print("ERROR : ------The Deployment has Errors-------")
+			print("--------------------------------------------------------------------------------------------")
+			print("   					  !!! ERROR The Zip Bundle Contains Error !!!                         |")
+			print("--------------------------------------------------------------------------------------------")
+
 			print(response.text)
-			#exit()
 		
+
+
+
