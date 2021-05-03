@@ -16,6 +16,7 @@ from edit_shared_flow import Edit_Shared_Flow
 from edit_statistic_collector import Edit_Statistic_Collector
 from edit_spike_arrest import Edit_Spike_Arrest
 from edit_message_logging import Edit_Message_Logging
+from update_kvm_using_policy import Update_KVM
 
 filename=""
 current_path = ""
@@ -23,6 +24,7 @@ bearer_token =""
 
 with open("config.json") as json_data_file:
     data = json.load(json_data_file)
+    json_data_file.close()
 current_path= data['path']
 bearer_token =data['token']
 org=data['org_name']
@@ -41,13 +43,24 @@ createkvm=creating_kvm
 kvm_folder_path="kvm"
 createkvm.Createkvm.createkvm(current_path,kvm_folder_path,bearer_token,org)
 
+
+#updatekvm=Update_KVM
+#kvm_folder_path="kvm"
+#updatekvm.update_kvm_using_policy(current_path,kvm_folder_path,bearer_token,org)
+#updatekvm.read_kvm_file()
+#exit()
+
+
+#createkvm=creating_kvm
+#createkvm.Createkvm.createkvm(current_path,kvm_folder_path,bearer_token,org)
+
 resource_counter=0
 no_shared_flows=0
 try:
 	os.chdir(proxies_folder_path)
 	filenames = os.listdir(proxies_folder_path)
-	#print(filenames)
-	#filenames=['eighth-demo-sam.zip','statistic_collector_r2.zip','mesage_logging_rec2.zip','TS-namedServer.zip']
+	print(filenames)
+	#filenames=['statistic_collector_r2.zip']
 
 
 	for filename in filenames:
@@ -61,7 +74,8 @@ try:
 				print("|                    PROXY COUNT "+str(resource_counter)+" PROXY NAME "+filename)
 				print("--------------------------------------------------------------------------------------------")
 				
-				zip_n_unzip.Unzip.unzip_file(filename,proxies_folder_path+"\\"+filename)
+
+				zip_n_unzip.Unzip.unzip_file(filename,current_path+"\\proxies"+"\\"+filename)
 				policy_folder_exist ="False"
 				policy_folder_exist=str(path.exists(current_path+"\\proxies"+"\\"+filename+"\\apiproxy\\policies\\"))
 				if 	policy_folder_exist =="True":
@@ -132,19 +146,21 @@ try:
 				if statistic_collector_switch=="true":
 					edit_statistic_collector=Edit_Statistic_Collector
 					edit_statistic_collector.edit_statistic_collector(current_path,proxy_name_include_sc,name_sc,bearer_token,src_dc_file)
-					zip_n_unzip.Zip.create_newzip_after_changes(filename,proxies_folder_path)		
+					zip_n_unzip.Zip.create_newzip_after_changes(filename,current_path+"\\proxies")		
 				##########################################  Checking for Target Servers  #######################################
-				target_server_exist=str(path.exists(proxies_folder_path+"\\"+filename+"\\apiproxy\\targets\\default.xml"))
+				target_server_exist=str(path.exists(current_path+"\\proxies"+"\\"+filename+"\\apiproxy\\targets\\default.xml"))
 				#print("<============================ TARGET SERVERS FOUND =============================>"+target_server_exist)
 				if target_server_exist =="True":
 					handle_ts=Handling_Target_Servers
 					handle_ts.create_target_server(current_path,filename)
-					zip_n_unzip.Zip.create_newzip_after_changes(filename,proxies_folder_path)
+					zip_n_unzip.Zip.create_newzip_after_changes(filename,current_path+"\\proxies")
 				
 				resource_type="apis"
 				resource_id = "apiProxyId"
+				zip_n_unzip.Zip.create_newzip_after_changes(filename,current_path+"\\proxies")
+
 				upload_zip=upload_n_deploy
-				upload_zip.Upload.upload_to_hybrid(proxies_folder_path,filename,bearer_token,org,resource_type,resource_id)
+				upload_zip.Upload.upload_to_hybrid(current_path+"\\proxies",filename,bearer_token,org,resource_type,resource_id)
 				upload_zip.Deploy.deploy_to_hybrid(environment[0],filename,bearer_token,org,resource_type)
 			else:
 				print("--------------------------------------------------------------------------------------------")
@@ -155,4 +171,5 @@ try:
 except OSError as e:
 	print("<================== File not found PLEASE CHECK config.json file ===================>")
 	print("Failed with:", e.strerror)
+
 	
