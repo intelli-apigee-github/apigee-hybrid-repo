@@ -13,10 +13,10 @@ class Unzip:
 		from zipfile import ZipFile
 		try:
 			ZipFile(filename+".zip").extractall(path)
-			#print("<=========================== PROXY PATH =======================================>"+path)
+			print("<=========================== PROXY PATH =======================================>"+path)
 		except IOError:
-			pass
-			#print('Specified Zip File not found ')	
+			#pass
+			print('Specified Zip File not found ')	
 
 class Zip:
 	"""docstring for Zip's the edited file"""
