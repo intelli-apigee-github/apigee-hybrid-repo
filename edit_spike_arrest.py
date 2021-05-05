@@ -54,7 +54,7 @@ class Edit_Spike_Arrest:
 
 
 			if (value_of_effective_count == "true") & (ref_var == ""):
-				changed_spike_rate=no_of_mp*int(only_digit)
+				changed_spike_rate=int(no_of_mp)*int(only_digit)
 				#print("Changed Spike rate "+str(changed_spike_rate))
 				#print(current_path+"\\proxies"+"\\"+proxy_name_include_sa+"\\apiproxy\\policies\\"+name_sa+".xml")
 				pyutil.filereplace(current_path+"\\proxies"+"\\"+proxy_name_include_sa+"\\apiproxy\\policies\\"+name_sa+".xml","<UseEffectiveCount>true</UseEffectiveCount>","")
