@@ -18,6 +18,7 @@ class Edit_Statistic_Collector:
 		
 	def edit_statistic_collector(current_path,proxy_name_include_sc,name_sc,token,src_dc_file):
 		referenced_var =''
+		default_value_stats=0
 		file_statistic_collector=open(current_path+"\\proxies"+"\\"+proxy_name_include_sc+"\\apiproxy\\policies"+"\\"+name_sc+".xml", 'r')
 		lines=file_statistic_collector.readlines()
 		for line in lines:
@@ -30,9 +31,10 @@ class Edit_Statistic_Collector:
 				policy_display_name=match_display_name.group(1)
 			match_default_value =re.search(r'<Statistic .*>(.*?)</Statistic',line)
 			if match_default_value:
-				default_value_stats=match_default_value.group(1).strip()	
-			else:
-				default_value_stats="0"
+				default_value_stats=match_default_value.group(1).strip()
+				print("Printing =================> "+default_value_stats)
+
+			
 		file_statistic_collector.close()
 		print("------------------------------------------------------")
 		print("| Copying the required Data Capture  policy file     |")
