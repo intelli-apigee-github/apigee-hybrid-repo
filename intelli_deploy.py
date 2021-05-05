@@ -34,33 +34,30 @@ port=data['port']
 message_log=data['log_message']
 no_of_mp=data['message_processor']
 src_dc_file=data['source_file_data_capture']
+src_kvm_file=data['source_file_kvm']
+
 
 count_of_resources=0
 count_of_sf=0
 proxies_folder_path=current_path+"\\proxies"
 
-createkvm=creating_kvm
-kvm_folder_path="kvm"
-createkvm.Createkvm.createkvm(current_path,kvm_folder_path,bearer_token,org)
+#createkvm=creating_kvm
+#kvm_folder_path="kvm"
+#createkvm.Createkvm.createkvm(current_path,kvm_folder_path,bearer_token,org)
 
 
 #updatekvm=Update_KVM
-#kvm_folder_path="kvm"
-#updatekvm.update_kvm_using_policy(current_path,kvm_folder_path,bearer_token,org)
-#updatekvm.read_kvm_file()
+#updatekvm.update_kvm_using_policy(current_path,src_kvm_file)
 #exit()
 
-
-#createkvm=creating_kvm
-#createkvm.Createkvm.createkvm(current_path,kvm_folder_path,bearer_token,org)
 
 resource_counter=0
 no_shared_flows=0
 try:
 	os.chdir(proxies_folder_path)
 	filenames = os.listdir(proxies_folder_path)
-	print(filenames)
-	#filenames=['statistic_collector_r2.zip']
+	#print(filenames)
+	#filenames=['demo_spike_arrest_rec2.zip']
 
 
 	for filename in filenames:
@@ -115,7 +112,7 @@ try:
 									statistic_collector_switch="true"	
 
 														
-								result_spike = re.match(r'<SpikeArrest.*name="(.*?)">', line)
+								result_spike = re.search(r'<SpikeArrest.*name="(.*?)">', line)
 								if result_spike:
 									name_sa=result_spike.group(1).strip()
 									proxy_name_include_sa=filename.strip()
