@@ -1,12 +1,12 @@
 {
 	"org_name":"apigee-hybrid-demo-305106",
 	"token":"ya29.a0AfH6SMCqosk7-ViaBBEz4mBrwocieJaoldjCw1Rqp3ybyI_fGsBsFqf7glyCkPnsxPUr0ghyQSd-yxpPgsJc7Iqpspg4LvkStYvZ2widNzp9Wz0dWffad2v_HQdQ6avkcWv-y2zdt06KuNDVxfm_TmjQ_jfaj2T8PiuYwczk822bMRZU7NkWCVKipvFBKGzJ2HIVJ9BUthSrXhP7dcrHNi-mw4hOmSEF79MOYzazjPTu4LMuqIt72tIyq5frAFRMmTAN4RA",
-	"path" :"C:\\Users\\admin\\Downloads\\data\\data",
-	"source_file_data_capture" : "C:\\Users\\admin\\Downloads\\data\\DataCapture.xml",
+	"path" :"C:\\Users\\admin\\data\\data",
+	"source_file_data_capture" : "C:\\Users\\admin\\data\\data\\DataCapture.xml",
 	"environment": ["test0","test1","test2"],
 	"host" : "localhost",
 	"port" : "8080",
 	"log_message" : " apigee-hybrid-demo-305106 weather log API ",
 	"message_processor" : "2",
-	"source_file_kvm" :"C:\\Users\\admin\\Downloads\\data\\data\\KVM.xml"
+	"source_file_kvm" :"C:\\Users\\admin\\data\\data\\KVM.xml"
 }
